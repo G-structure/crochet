@@ -1,0 +1,19 @@
+[project]
+name = "crochet"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ruff>=0.6.8",
+    "libigl>=2.5.1",
+    "matplotlib>=3.9.2",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+hello = "crochet:hello"
+geodesic = "crochet.geodesic:main"
