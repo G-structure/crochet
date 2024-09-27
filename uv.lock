@@ -47,14 +47,18 @@ source = { editable = "." }
 dependencies = [
     { name = "libigl" },
     { name = "matplotlib" },
+    { name = "numpy" },
     { name = "ruff" },
+    { name = "scipy" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "libigl", specifier = ">=2.5.1" },
     { name = "matplotlib", specifier = ">=3.9.2" },
+    { name = "numpy", specifier = ">=2.1.1" },
     { name = "ruff", specifier = ">=0.6.8" },
+    { name = "scipy", specifier = ">=1.14.1" },
 ]
 
 [[package]]

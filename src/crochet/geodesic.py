@@ -14,8 +14,12 @@ def calculate_geodesic_isolines(v, f, start_vertex, strip_size):
     return c, d
 
 def calculate_gradient(v, f, d):
-    g = igl.grad(v, f)
-    grad = g.dot(d).reshape(f.shape, order="F")
+    g = igl.grad(v,f)
+    print("Sample g:", g)
+    print("Sample d:", d[:5])
+    grad = g.dot(d)
+    print("Sample grad:", grad[:5])
+    grad = grad.reshape(f.shape, order="F")
     grad_mag = np.linalg.norm(grad, axis=1)
     return grad, grad_mag
 
@@ -42,8 +46,9 @@ def plot_geodesic_gradient(v, f, d):
     ax = fig.add_subplot(111, projection='3d')
 
     # Plot the mesh
-    mesh = ax.plot_trisurf(v[:, 0], v[:, 1], v[:, 2], triangles=f,
-                           cmap='viridis', alpha=0.7)
+    mesh = ax.plot_trisurf(v[:, 0], v[:, 1], v[:, 2], triangles=f, color='lightgray', alpha=0.5)
+    # mesh = ax.plot_trisurf(v[:, 0], v[:, 1], v[:, 2], triangles=f,
+                           # cmap='viridis', alpha=0.7)
 
     # Calculate barycenter of each face
     bc = igl.barycenter(v, f)
@@ -51,10 +56,16 @@ def plot_geodesic_gradient(v, f, d):
     # Normalize gradient vectors for visualization
     grad_normalized = grad / np.max(grad_mag)
 
-    # Plot gradient vectors
+    # # Print out grad_normalized in a nice format
+    # print("Normalized Gradient:")
+    # for i, grad in enumerate(grad):
+    #     print(f"Face {i}: [{grad[0]:.4f}, {grad[1]:.4f}, {grad[2]:.4f}]")
+    # print("\n")
+
+    # Plot gradient vectors with increased length and arrow size
     quiver = ax.quiver(bc[:, 0], bc[:, 1], bc[:, 2],
                        grad_normalized[:, 0], grad_normalized[:, 1], grad_normalized[:, 2],
-                       length=0.05, normalize=True, color='r')
+                       length=1.0, normalize=False, color='red', linewidth=2, arrow_length_ratio=0.3)
 
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
@@ -69,7 +80,13 @@ def plot_geodesic_gradient(v, f, d):
 def main():
     root_folder = os.getcwd()
 
-    v, f = igl.read_triangle_mesh(os.path.join(root_folder, "data", "bent_pipe_closed_lr.off"))
+    v, f = igl.read_triangle_mesh(os.path.join(root_folder, "data", "cheburashka.off"))
+    u = igl.read_dmat(os.path.join(root_folder, "data", "cheburashka-scalar.dmat"))
+
+    g = igl.grad(v, f)
+    gu = g.dot(u).reshape(f.shape, order="F")
+    print("Sample gu:", g[:5])
+    print("Sample gu:", gu[:5])
 
     start_vertex = 0
     strip_size = 0.2
