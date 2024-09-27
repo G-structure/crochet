@@ -54,7 +54,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "libigl", specifier = ">=2.5.1" },
+    { name = "libigl", git = "https://github.com/libigl/libigl-python-bindings.git" },
     { name = "matplotlib", specifier = ">=3.9.2" },
     { name = "numpy", specifier = ">=2.1.1" },
     { name = "ruff", specifier = ">=0.6.8" },
@@ -136,17 +136,10 @@ wheels = [
 [[package]]
 name = "libigl"
 version = "2.5.1"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/libigl/libigl-python-bindings.git#63ebb8eb47a2238874d126d232f3d9f04ff9ec21" }
 dependencies = [
     { name = "numpy" },
     { name = "scipy" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/e5/ee/fc4ab0b718b05d32d5f7b961c4273ea505683e7d1ff0edb399cbcbeef04f/libigl-2.5.1.zip", hash = "sha256:b85db781427ba5c9d1586b3c4bfd33b8f0fa225f3a5003dd3cb7c3f998b0be41", size = 45000 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/f8/99/dcf1cf40c87fba2afcc9f624b0a46605784d2ec6526775b9703821a55d57/libigl-2.5.1-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:39497f3c464e7739b20f5f9693226db467a5b41371a7fb6523abc78157edca5a", size = 14421230 },
-    { url = "https://files.pythonhosted.org/packages/16/e3/fcd90ee2e798760feb28501d400bad8d0e1add3b7a0695931d70140d8c4f/libigl-2.5.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:173fc975fa74896e8275605a2e3c0e8f98c01670ae01774b81276d6933654d61", size = 11227055 },
-    { url = "https://files.pythonhosted.org/packages/cd/5a/de034dd2ee178394b7de59d94a32c74a9c475f98f9c56211362a2497513d/libigl-2.5.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8b4122669cf5d80a304d089cf094ce1c78cfd09cc5426347fad9961d80310045", size = 16210236 },
-    { url = "https://files.pythonhosted.org/packages/63/80/675786479f98278522b55247bcbaf627b2b5ee0d424374df1377c4eec86f/libigl-2.5.1-cp312-cp312-win_amd64.whl", hash = "sha256:dfff324ca17d8785b97ec5539eb4de41afba6b49e2db859b309d47c894991124", size = 7512095 },
 ]
 
 [[package]]
